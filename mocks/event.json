@@ -1,0 +1,14 @@
+{
+  "Records": [
+    {
+      "s3": {
+        "bucket": {
+          "name": "my-s3-bucket"
+        },
+        "object": {
+          "key": "my-s3-file.xlsx"
+        }
+      }
+    }
+  ]
+}
