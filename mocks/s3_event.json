@@ -3,10 +3,10 @@
     {
       "s3": {
         "bucket": {
-          "name": "mocks"
+          "name": "lambda-pandas-excel-bucket"
         },
         "object": {
-          "key": "invoices.xlsx"
+          "key": "uploads/invoices_short.xlsx"
         }
       }
     }

@@ -4,6 +4,13 @@ frameworkVersion: "3"
 provider:
   name: aws
   runtime: python3.10
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - s3:GetObject
+          Resource: "arn:aws:s3:::${self:custom.bucket}/*"
 
 package:
   patterns:
@@ -13,8 +20,18 @@ package:
     - "!pytest.ini"
     - "src/**"
 
+custom:
+  bucket: lambda-pandas-excel-bucket
+
 functions:
   main:
     handler: src.handler.main
     layers:
       - arn:aws:lambda:us-east-1:336392948345:layer:AWSSDKPandas-Python310:3
+    events:
+      - s3:
+          bucket: ${self:custom.bucket}
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: uploads/
+            - suffix: .xlsx
