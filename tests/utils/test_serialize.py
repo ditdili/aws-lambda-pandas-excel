@@ -2,7 +2,7 @@ import unittest
 from decimal import Decimal
 from unittest.mock import patch, Mock
 
-from utils.serialize import serialize
+from src.utils.serialize import serialize
 
 
 class TestSerialize(unittest.TestCase):
@@ -12,7 +12,7 @@ class TestSerialize(unittest.TestCase):
         self.assertEqual(serialize(obj), expected_output)
 
     def test_mock_isinstance(self):
-        with patch("utils.serialize.DecimalEncoder.default", side_effect=TypeError):
+        with patch("src.utils.serialize.DecimalEncoder.default", side_effect=TypeError):
             with self.assertRaises(TypeError) as e:
                 serialize(Decimal("5.67"))
             self.assertEqual(
