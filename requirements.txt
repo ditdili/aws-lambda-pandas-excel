@@ -3,4 +3,3 @@ openpyxl
 pytest
 coverage
 boto3
-aws-lambda-powertools[aws-sdk]

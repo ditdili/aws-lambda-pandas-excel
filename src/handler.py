@@ -8,7 +8,7 @@ import os
 if logging.getLogger().hasHandlers():
     logging.getLogger().setLevel(logging.INFO)
 else:
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.INFO)  # pragma: no cover
 
 log = logging.getLogger(__name__)
 
@@ -16,7 +16,7 @@ log = logging.getLogger(__name__)
 def main(event, context):
     log.info(f"Event: {serialize(event)}")
     if hasattr(context, "__dict__"):
-        log.info(f"Context: {serialize(vars(context))}")
+        log.info(f"Context: {serialize(vars(context))}")  # pragma: no cover
 
     try:
         s3_client = boto3.client("s3")
@@ -28,15 +28,10 @@ def main(event, context):
             bucket, key, s3_client=None if local else s3_client
         )
 
-        body = {
-            "bucket": bucket,
-            "key": key,
-        }
-
-        log.info(serialize(body))
         log.info(serialize(parse_excel_response))
 
-        response = {"statusCode": 200, "body": body}
+        response = {"statusCode": 200, "body": parse_excel_response}
+
         return response
 
     except Exception as e:
@@ -48,4 +43,4 @@ def main(event, context):
 
 
 if __name__ == "__main__":
-    main("", "")
+    main("", "")  # pragma: no cover
