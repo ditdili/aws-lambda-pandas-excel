@@ -30,7 +30,7 @@ def main(event, context):
 
         log.info(serialize(parse_excel_response))
 
-        response = {"statusCode": 200, "body": parse_excel_response}
+        response = {"statusCode": 200, "body": serialize(parse_excel_response)}
 
         return response
 

@@ -3,6 +3,7 @@ import unittest
 from src.handler import main
 from unittest.mock import patch
 import pandas as pd
+from src.utils.serialize import serialize
 
 
 mock_event = json.loads(open("mocks/event.json", "r").read())
@@ -27,7 +28,7 @@ class TestHandler(unittest.TestCase):
 
         self.assertTrue(mock_parse_excel.called)
         self.assertEqual(result["statusCode"], 200)
-        self.assertEqual(result["body"], parsed_data)
+        self.assertEqual(result["body"], serialize(parsed_data))
 
     @patch("src.handler.parse_excel", side_effect=Exception("Unknown error occurred"))
     def test_raise_exception(self, mock_parse_excel):

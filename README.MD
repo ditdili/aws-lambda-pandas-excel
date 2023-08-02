@@ -1,10 +1,10 @@
-# Excel Pandas Processing Lambda
+# Excel Processing Lambda
 
 ## Description
 
-This is a lambda function that will process an excel file and return a json object with the data. The excel file is expected to be in the following format:
+AWS Lambda to process excel files that are uploaded to S3 bucket. The function is triggered by S3 bucket event. The function will read the excel file using pandas, parse it, and convert it to json format.
 
-## Tech:
+## Tech
 
 - Python 3.10
 - Serverless Framework
